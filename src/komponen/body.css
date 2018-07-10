@@ -1,0 +1,23 @@
+.body{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}
+
+.pic{
+    width: 50%;
+    height: 50%;
+    padding: 20px;
+}
+.header{
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1;
+}
+.karosel{
+    background-image: url(../komponen/img/guarantee-may2017.jpg);
+    margin-top: 63px;
+    margin: 0, auto;
+
+}

@@ -1,0 +1,11 @@
+.form{
+    text-align: left;
+    color: bisque;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex,
+}
+
+
