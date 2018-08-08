@@ -1,117 +1,100 @@
 import React, { Component } from 'react';
-// @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-import InputAdornment from "@material-ui/core/InputAdornment";
-// @material-ui/icons
-import LockOutline from "@material-ui/icons/LockOutline";
-import Email from "@material-ui/icons/Email";
-// core components
 import GridContainer from "../components/Grid/GridContainer.jsx";
 import GridItem from "../components/Grid/GridItem.jsx";
 import Card from "../components/Card/Card.jsx";
 import CardHeader from "../components/Card/CardHeader.jsx";
 import CardBody from "../components/Card/CardBody.jsx";
-import CardFooter from "../components/Card/CardFooter.jsx";
 import Button from "../components/CustomButtons/Button.jsx";
-import CustomInput from "../components/CustomInput/CustomInput.jsx";
-import loginStyle from "../assets/jss/material-kit-react/views/componentsSections/loginStyle.jsx";
-import Dialog from '@material-ui/core/Dialog';
-import DialogContent from '@material-ui/core/DialogContent';
-import Form from './from.js';
-
+import { Link, Redirect } from 'react-router-dom';
+import Axios from 'axios';
+import { connect } from 'react-redux';
+import { loginID } from '../action';
+import './login.css'
 class SectionLogin extends Component {
 
   state = {
-    bottom: false,
-    open: false
+    open: false,
+    dialog: true,
+    user: '',
+    pass: '',
+    redirect_home: false,
   };
 
-  handleClickOpen = () => {
-    this.setState({ open: true });
-  };
+  submitlogin() {
+    this.setState({ user: this.refs.namas.value })
+    this.setState({ pass: this.refs.passd.value })
+  }
 
-  handleClose = () => {
-    this.setState({ open: false });
-  };
+
+  klikLogin() {
+    var url = `http://localhost:3222/userLogin`
+    Axios.post(url, {
+      name: this.state.user,
+      password: this.state.pass
+    })
+      .then((respon) => {
+        if (respon.data.iduser > 1) {
+          var data = respon.data;
+          var idLog = data.iduser
+          this.props.loginID(idLog)
+          this.setState({ redirect_home: true })
+        }
+        else {
+          alert("Usernam/Email & Password is wrong")
+        }
+
+      })
+      .catch((gagal) => { console.log(gagal) })
+  }
 
   render() {
-    const { classes } = this.props;
+    const { redirect_home } = this.state;
+    if (redirect_home) {
+      this.setState({ redirect_home: false })
+      return (< Redirect to='/' />)
+    }
     return (
-      <div >
-        <div className={classes.container}>
+      <div className="background">
+        <div className="bodysec">
           <GridContainer justify="center">
-            <GridItem>
+            <GridItem xs={12} sm={12} md={4}>
               <Card>
-                <form className={classes.form}>
-                  <CardHeader color="danger" className={classes.cardHeader}>
-                    <h4>Login</h4>
+                <form > 
+                  <CardHeader color="danger">
+                    <h4>Sign In</h4>
                   </CardHeader>
-                  <CardBody>
-                    <CustomInput
-                      labelText="Email..."
-                      id="email"
-                      color="danger"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "email",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <Email className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        )
-                      }} />
-                    <CustomInput
-                      labelText="Password"
-                      id="pass"
-                      formControlProps={{
-                        fullWidth: true
-                      }}
-                      inputProps={{
-                        type: "password",
-                        endAdornment: (
-                          <InputAdornment position="end">
-                            <LockOutline className={classes.inputIconsColor} />
-                          </InputAdornment>
-                        )
-                      }}
+                  <CardBody >
+                  <center>
+                    <input
+                      onChange={() => { this.submitlogin(); }}
+                      className="text"  placeholder="Email..." type="email" ref="namas"
                     />
-                    <center>
-                      <Button color="danger" >
-                        Login
+                    <br />
+                    <input
+                      onChange={() => { this.submitlogin(); }}
+                      className="text"  placeholder="Password" type="password" ref="passd"
+                    />
+                    <br />
+                    <Button color="danger" onClick={() => this.klikLogin()}>
+                      Login
                     </Button>
+                    <br/><br/>
+                    <Link to="/SignIn">
+                      <Button 
+                        simple color="info">
+                          Don't Have Account? Get started
+                    </Button>
+                    </Link>
                     </center>
                   </CardBody>
-                  <CardFooter className={classes.cardFooter}>
-
-                    <Button
-                      simple color="info"
-
-                      onClick={this.handleClickOpen}>
-                      Don't Have Account? Get started
-                    </Button>
-                  </CardFooter>
-                </form>
+                 </form>
               </Card>
             </GridItem>
           </GridContainer>
         </div>
-
-        <div>
-          <Dialog
-            open={this.state.open}
-            onClose={this.handleClose}
-            aria-labelledby="form-dialog-title">
-            <DialogContent>
-              <Form />
-            </DialogContent>
-          </Dialog>
-        </div>
-
       </div>
     );
   }
 }
 
-export default withStyles(loginStyle)(SectionLogin);
+export default connect(null, { loginID })(SectionLogin);

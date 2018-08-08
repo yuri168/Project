@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
-// react component for creating beautiful carousel
 import Carousel from "react-slick";
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-
-
-import GridItem from "../components/Grid/GridItem.jsx";
-
 import carouselStyle from "../assets/jss/material-kit-react/views/componentsSections/carouselStyle.jsx";
 import image1 from "../assets/img/bg.jpg";
 import image2 from "../assets/img/bg2.jpg";
@@ -28,8 +22,6 @@ class SectionCarousel extends Component {
     return (
       <div className={classes.section}>
         <div className={classes.container}>
-          
-            
                 <Carousel {...settings} >
                   <div >
                     <img
@@ -54,8 +46,6 @@ class SectionCarousel extends Component {
                     />
                   </div>
                 </Carousel>
-            
-          
         </div>
       </div>
     );

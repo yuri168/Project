@@ -1,0 +1,17 @@
+
+.bodymy{
+    padding: 30px;
+}
+
+.item{
+    padding: 15px;
+    padding-left: 50px; 
+    padding-right: 50px;
+}
+
+.itemtitle{
+    padding-top: 25px;
+    padding-left: 50px;
+    padding-bottom: 15px;
+    padding-right: 50px;
+} 

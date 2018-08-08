@@ -1,0 +1,15 @@
+.cartbody{
+    margin:8%;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    padding: 5px;
+    text-align: center;
+    border-bottom: 3px solid #ddd;
+}
+
+

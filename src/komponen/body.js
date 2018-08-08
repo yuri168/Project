@@ -2,84 +2,84 @@ import React, { Component } from 'react';
 import Header from './header.js';
 import Footer from './footer.js';
 import Carousel from './corusel.js';
-
-//material-ui
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-
-
-//linking
-import { Link, Route } from 'react-router-dom';
-//Css
+import { Link } from 'react-router-dom';
+import Axios from 'axios';
 import './body.css';
-
-
-
-
+import { connect } from 'react-redux';
+import { productID } from '../action';
 
 class Body extends Component {
+    state = {
+      dataBackend:[],
+      
+    }
 
+  componentWillMount(){
+    { this.body() }
+  }
+  body() {
+    var url = `http://localhost:3222/body`;
+    Axios.get(url).then((ambilData) => {
+      this.setState({
+        dataBackend: ambilData.data,
+       
+      })
+    })
+  }
 
+  gettempid = (x) => {
+    this.props.productID(x);
+  }
 
   render() {
+      const foldergambar = "http://localhost:3000/image/";
+      const data = this.state.dataBackend.map((item, i) => {
+      var idp = item.idprod
+      var namaProduk = item.namaprod
+      var gambar = item.img
+
+      return (
+        <Grid item xs={12} sm={6} key={i}>
+        <Link to= {`/Product/${idp}`} onClick={()=>this.gettempid(idp)}>
+          <Paper>
+            <Grid container spacing={8}>
+              <Grid item sm={6}>
+                <img className="pic" src={`${foldergambar+gambar}`} />
+              </Grid>
+              <Grid item sm={6}>
+                <h4>{namaProduk}</h4>
+              </Grid>
+            </Grid>
+          </Paper>
+        </Link>
+      </Grid>
+      )
+    })
+
 
     return (
+
+
+
       <div>
         <div className='header'>
-        <Header /> 
+          <Header />
         </div>
-
         <div className='karosel'>
-          <Carousel/>
+          <Carousel />
         </div>
-
         <div className='body'>
           <Grid container spacing={16}>
-
-            <Grid item xs={12} sm={6}>
-              <Link to="/productcontent">
-                <Paper>
-                  <img alt="bag" className='pic' src={require('./img/backpack.jpg')} />
-                  Backpack
-                    </Paper>
-              </Link>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Link to="/productcontent">
-                <Paper className=''>
-                  <img alt="messenger" className='pic' src={require('./img/messenger.jpg')} />
-                  Messenger Bag
-                    </Paper>
-              </Link>
-            </Grid>
-            <Grid item xs={12} sm={6}>
-
-              <Link to="/productcontent">
-                <Paper className='grid'>
-                  <img alt="slingbag" className='pic' src={require('./img/sling.jpg')} />
-                  Sling Bag
-                    </Paper>
-              </Link>
-
-            </Grid>
-            <Grid item xs={12} sm={6}>
-
-              <Paper className='gridtote'>
-                <Link to="/productcontent">
-                  <img alt="totebag" className='pic' src={require('./img/totebag.jpg')} />
-                  Tote Bag
-                      </Link>
-              </Paper>
-
-            </Grid>
-          </Grid>
           
+            {data}
+          </Grid>
         </div>
-        
         <div><Footer /></div>
       </div>
     );
   }
 }
 
-export default Body;
+export default connect(null, {productID}) (Body);

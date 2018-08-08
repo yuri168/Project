@@ -20,3 +20,14 @@
     position: fixed;
 
 }
+.text{
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid rgb(0,0,0, 0.12);
+    box-sizing: border-box;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+}

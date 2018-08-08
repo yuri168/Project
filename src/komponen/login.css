@@ -1,0 +1,20 @@
+.bodysec{
+    padding: 11.5%;
+    
+}
+.background{
+    background-image: url(./img/loginsec.jpg);
+    width: 100%;
+    height: 100%;
+}
+.text{
+    width: 80%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: none;
+    border-bottom: 1px solid rgb(0,0,0, 0.12);
+    box-sizing: border-box;
+    font-size: 14px;
+    color: rgb(0, 0, 0);
+}

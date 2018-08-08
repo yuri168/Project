@@ -18,3 +18,24 @@
     border-radius: 3px;
     
 }
+.search{
+    padding: 12px 15px;
+    margin: 4px 0;
+    width: 150px;
+    border: none;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: grey;
+}
+.buttons{
+ margin: 0 auto
+}
+
+.ull{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.lii{
+    display: inline;
+}
