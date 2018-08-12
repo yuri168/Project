@@ -17,14 +17,14 @@ class product extends Component {
         redirect_home: false,
     }
 
-    componentDidMount() {
+    componentWillMount() {
         { this.product() }
     }
 
     product() {
         var url = `http://localhost:3222/Product/${this.props.idprod}`;
         Axios.get(url).then((ambilData) => {
-            console.log(ambilData.data);
+            // console.log(ambilData.data);
             this.setState({
                 dataBackend: ambilData.data,
 

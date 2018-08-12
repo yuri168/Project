@@ -12,7 +12,7 @@ import { productID } from '../action';
 class Search extends Component {
     state = {
       dataBackend:[],
-      
+      new: this.props.search
     }
 
 
@@ -20,13 +20,14 @@ class Search extends Component {
     { this.body() }
   }
 
-  componentDidUpdate(){
-      {this.body()}
+  componentWillUpdate(){
+    { this.body() }
   }
 
   body() {
     var url = `http://localhost:3222/search/${this.props.search}`;
     Axios.get(url).then((ambilData) => {
+     
       this.setState({
         dataBackend: ambilData.data,
       })

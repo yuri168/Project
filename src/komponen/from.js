@@ -31,6 +31,10 @@ class From extends Component {
     }
 
     klikPost() {
+        if(this.state.name === '' || this.state.pass === '' || this.state.email === '' || this.state.phone === ''){
+            alert("Do you mind if We get the details?")
+        }
+        else{
         var url = `http://localhost:3222/SignIn`
         Axios.post(url, {
             name: this.state.name,
@@ -53,6 +57,7 @@ class From extends Component {
 
             })
             .catch((err) => { console.log(err) })
+        }
     }
 
 

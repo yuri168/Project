@@ -38,22 +38,6 @@ class Cart extends Component {
     })
   }
 
-  // cart = () => {
-  //   if (this.state.cartstate === true) {
-
-  //   }
-  //   else {
-  //     return (
-  //       <div>
-  //         <br />
-  //         <h3>Your cart is empty. Let’s get you geared up.</h3>
-  //         <br />
-  //         <h4> Click here to <Link to="/">continue</Link> shopping.</h4>
-  //       </div>
-  //     )
-  //   }
-  // }
-
   submitcheck() {
     this.setState({ nama: this.refs.names.value })
     this.setState({ adder: this.refs.adds.value })

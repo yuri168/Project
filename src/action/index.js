@@ -25,3 +25,10 @@ export const searching = (x) =>{
         payload: x
     }
 }
+
+export const namaID = (x) =>{
+    return{
+        type:'idName',
+        payload: x
+    }
+}

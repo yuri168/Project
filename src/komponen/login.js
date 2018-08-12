@@ -8,13 +8,11 @@ import Button from "../components/CustomButtons/Button.jsx";
 import { Link, Redirect } from 'react-router-dom';
 import Axios from 'axios';
 import { connect } from 'react-redux';
-import { loginID } from '../action';
+import { loginID, namaID } from '../action';
 import './login.css'
 class SectionLogin extends Component {
 
   state = {
-    open: false,
-    dialog: true,
     user: '',
     pass: '',
     redirect_home: false,
@@ -35,7 +33,9 @@ class SectionLogin extends Component {
       .then((respon) => {
         if (respon.data.iduser > 1) {
           var data = respon.data;
-          var idLog = data.iduser
+          var idLog = data.iduser;
+          var nama = data.nama;
+          this.props.namaID(nama)
           this.props.loginID(idLog)
           this.setState({ redirect_home: true })
         }
@@ -80,10 +80,9 @@ class SectionLogin extends Component {
                     </Button>
                     <br/><br/>
                     <Link to="/SignIn">
-                      <Button 
-                        simple color="info">
+                      
                           Don't Have Account? Get started
-                    </Button>
+                    
                     </Link>
                     </center>
                   </CardBody>
@@ -97,4 +96,4 @@ class SectionLogin extends Component {
   }
 }
 
-export default connect(null, { loginID })(SectionLogin);
+export default connect(null, { loginID, namaID })(SectionLogin);

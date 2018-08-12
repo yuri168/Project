@@ -38,14 +38,14 @@ class SectionNavbars extends Component {
   };
 
 
-  submitsearch() {
-    this.setState({ search: this.refs.searchs.value })
+  // submitsearch() {
+  //   this.setState({ search: this.refs.searchs.value })
     
-  }
+  // }
 
   submitsearchbtn() {
     
-    this.props.searching(this.state.search)
+    this.props.searching(this.refs.searchs.value)
   }
 
   header = () => {
@@ -59,7 +59,7 @@ class SectionNavbars extends Component {
                 <ul className="ull">
                   <li className="lii">
                     <input
-                      onChange={() => { this.submitsearch(); }}
+                      
                       className="search"
                       placeholder="Search..."
                       ref="searchs"
@@ -119,7 +119,7 @@ class SectionNavbars extends Component {
                   <ul className="ull">
                     <li className="lii">
                       <input
-                        onChange={() => { this.submitsearch(); }}
+                        
                         className="search"
                         placeholder="Search..."
                         ref="searchs"
