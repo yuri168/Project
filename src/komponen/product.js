@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 class product extends Component {
     state = {
         dataBackend: [],
-        redirect_home: false,
+        redirect_login: false,
     }
 
     componentWillMount() {
@@ -24,16 +24,14 @@ class product extends Component {
     product() {
         var url = `http://localhost:3222/Product/${this.props.idprod}`;
         Axios.get(url).then((ambilData) => {
-            // console.log(ambilData.data);
+            console.log(ambilData.data);
             this.setState({
                 dataBackend: ambilData.data,
-
             })
         })
     }
 
     AddCart(){
-
         var url = `http://localhost:3222/addCart`
         Axios.post(url, {
           
@@ -49,34 +47,37 @@ class product extends Component {
             alert("Add to cart")
             }
             // console.log(respon)
-          })
-          
+          })    
     }
 
-    AddToCard(){
+    AddToCard(x){
+        var stok = x
         var idlog = this.props.idlogin
-        
-        if(idlog < 1){
-        this.setState({redirect_home: true})
-        
-        alert("You Must Login First")
+        var Quantity = this.refs.qty.value
+        if(Quantity <= stok ){
+            if (idlog < 1){
+                this.setState({redirect_login: true})
+                alert("You Must Login First")
+            }
+            else{
+                {this.AddCart()}
+            }
         }
         else{
-            {this.AddCart()}
+            alert("Stock is Not Available")
         }
     }
 
     render() {
         const foldergambar = "http://localhost:3000/image/";
 
-        const{redirect_home} = this.state;
-        if(redirect_home){
-          this.setState({redirect_home: false})
+        const{redirect_login} = this.state;
+        if(redirect_login){
+          this.setState({redirect_login: false})
           return(< Redirect to='/Login' />)
         }
 
         const data = this.state.dataBackend.map((item, i) => {
-
             var id = item.idprod
             var namaProduk = item.namaprod
             var productDesc = item.desc
@@ -150,7 +151,7 @@ class product extends Component {
                                     />
                                     <br /><br />
                                     <div>
-                                        <Button color="danger" onClick={()=>{this.AddToCard()}} >
+                                        <Button color="danger" onClick={()=>{this.AddToCard(Stock)}} >
                                             Add to Cart
                                     </Button>
                                     </div>

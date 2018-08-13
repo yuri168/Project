@@ -46,8 +46,8 @@ class Cart extends Component {
 
   // AXIOS -----------------------------------------------------------------------------------
   updatecartPlus(id, y) {
+    // how?
     var jum = y + 1
-    // console.log(id + ' ' + jum)
     var url = `http://localhost:3222/addCartPlus`
     Axios.post(url, {
       idcart: id,
@@ -59,6 +59,7 @@ class Cart extends Component {
   }
 
   updatecartMinus(id, y) {
+    if (y > 1){
     var jum = y - 1
     var url = `http://localhost:3222/addCartMinus`
     Axios.post(url, {
@@ -68,10 +69,10 @@ class Cart extends Component {
       .then((respon) => {
         { this.Carts() }
       })
+    }
   }
 
   updatecartDelete(id) {
-
     var url = `http://localhost:3222/addCartDelete`
     Axios.post(url, {
       idcart: id,
@@ -82,6 +83,10 @@ class Cart extends Component {
   }
 
   checkOut = () => {
+    if(this.state.nama == '' || this.state.alamat == '' || this.state.phone == ''){
+        alert('Please Complete Shipping Detail')
+    }
+    else{
     var user = this.props.idlogin
     var url = `http://localhost:3222/Checkout`
     Axios.post(url, {
@@ -98,6 +103,7 @@ class Cart extends Component {
       this.props.idInvoice(inv);
       this.setState({ redirect_detail: true })
     })
+    }
   }
 
   render() {
@@ -121,7 +127,6 @@ class Cart extends Component {
         </div>
       )
     }
-
 
     const { redirect_detail } = this.state;
     if (redirect_detail) {

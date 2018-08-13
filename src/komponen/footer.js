@@ -11,7 +11,7 @@ class footer extends Component {
         <Toolbar>
           <Typography variant="title" color="inherit">
 
-            Made with love
+            Design By Me
 
           </Typography>
         </Toolbar>

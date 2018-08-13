@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Header from './header.js';
+import Footer from './footer.js';
 import { connect } from 'react-redux';
 import Axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -11,11 +12,12 @@ import './myprofile.css'
 
 class myprofile extends Component {
     state = {
-        Data: []
+        Data: [],
+        profile: [],
     }
     componentDidMount() {
         { this.detailtrans() }
-        
+
     }
 
     detailtrans() {
@@ -25,12 +27,17 @@ class myprofile extends Component {
             // console.log(this.props.idlogin)
             this.setState({ Data: ambilData.data })
         })
+
+        var urlid = `http://localhost:3222/Profile/${this.props.idlogin}`
+        Axios.get(urlid).then((getdata) => {
+            console.log(getdata.data[0])
+            this.setState({ profile: getdata.data })
+        })
     }
 
     getinv(inv) {
         this.props.idInvoice(inv);
     }
-
     render() {
 
         const data = this.state.Data.map((item, i) => {
@@ -48,8 +55,8 @@ class myprofile extends Component {
                                 <Grid item sm={12}>
                                     <div className="itemtitle">
                                         Kode: {kodeinv}
-                                        <br/><br/>
-                                        <Divider/>
+                                        <br /><br />
+                                        <Divider />
                                     </div>
                                 </Grid>
                                 <Grid item xs={6}>
@@ -70,15 +77,44 @@ class myprofile extends Component {
             )
         })
 
+        const Profile = this.state.profile.map((item, i) => {
+            var nama = item.name
+            var email = item.email
+            return (
+                <div>
+                    <Paper>
+                        <div className="detailprofile">
+                            <br />
+                            <h4> Name  : {nama} </h4>
+                            <br />
+                            <h5> Email : {email} </h5>
+                            <br />
+                        </div>
+                    </Paper>
+                </div>
+            )
+        })
+
 
         return (
             <div>
                 <Header />
                 <div className="bodymy">
+                    <div className="profile">
+                        {Profile}
+                    </div>
+                    
+                    <div>
+                        <div className="trans">
+                           <h4> Transaksi </h4>
+                        <Divider/>
+                        </div>
                     <Grid container spacing={24}>
                         {data}
                     </Grid>
+                    </div>
                 </div>
+                <Footer />
             </div>
         )
     }

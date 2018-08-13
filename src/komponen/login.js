@@ -5,6 +5,8 @@ import Card from "../components/Card/Card.jsx";
 import CardHeader from "../components/Card/CardHeader.jsx";
 import CardBody from "../components/Card/CardBody.jsx";
 import Button from "../components/CustomButtons/Button.jsx";
+import Footer from './footer.js';
+import Header from './header.js';
 import { Link, Redirect } from 'react-router-dom';
 import Axios from 'axios';
 import { connect } from 'react-redux';
@@ -55,6 +57,7 @@ class SectionLogin extends Component {
     }
     return (
       <div className="background">
+      <Header/>
         <div className="bodysec">
           <GridContainer justify="center">
             <GridItem xs={12} sm={12} md={4}>
@@ -90,7 +93,9 @@ class SectionLogin extends Component {
               </Card>
             </GridItem>
           </GridContainer>
+          
         </div>
+        <Footer/>
       </div>
     );
   }

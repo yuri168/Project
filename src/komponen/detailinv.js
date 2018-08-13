@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Axios from 'axios';
+import Header from './header.js';
+import Footer from './footer.js';
 import './detail.css'
 
 
@@ -86,11 +88,11 @@ class SectionNavbars extends Component {
         })
 
         return (
+            <div>
+                <Header/>
             <div className="detailbody">
                 <table>
-                    
-                        {datainv}
-                    
+                        {datainv}                   
                 </table>
                 <br/>
                 <table>
@@ -107,6 +109,8 @@ class SectionNavbars extends Component {
                 <div className="total">
                 Total: {a}
                 </div>
+            </div>
+            <Footer/>
             </div>
         );
     }
