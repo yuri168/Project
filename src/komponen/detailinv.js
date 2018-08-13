@@ -37,7 +37,7 @@ class SectionNavbars extends Component {
         const datainv = this.state.datainv.map((item,i)=>{
 
             var code = item.codeinv
-            var tanggal = item.time
+            var tanggal = item.time.substr(0, 10)
             var Nmpenerima = item.namapenerima
             var Alpenerima = item.alamatpenerima
             var Nopenerima = item.nopenerima

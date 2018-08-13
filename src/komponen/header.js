@@ -38,13 +38,7 @@ class SectionNavbars extends Component {
   };
 
 
-  // submitsearch() {
-  //   this.setState({ search: this.refs.searchs.value })
-    
-  // }
-
   submitsearchbtn() {
-    
     this.props.searching(this.refs.searchs.value)
   }
 

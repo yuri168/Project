@@ -41,12 +41,8 @@ class SectionLogin extends Component {
           this.props.loginID(idLog)
           this.setState({ redirect_home: true })
         }
-        else {
-          alert("Usernam/Email & Password is wrong")
-        }
-
       })
-      .catch((gagal) => { console.log(gagal) })
+      .catch((gagal) => { alert("Username / Email & Password is wrong")})
   }
 
   render() {

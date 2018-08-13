@@ -17,23 +17,23 @@ class Cart extends Component {
     cartstate: true,
     dataBackend: [],
     idcart: 0,
-    jumlah: 0,
     nama: '',
     adder: '',
     phone: '',
     redirect_detail: false,
-    length: 0,
+    id: 0,
   };
   componentDidMount() {
     { this.Carts() }
   }
+
   Carts() {
     var url = `http://localhost:3222/Cart/${this.props.idlogin}`;
     Axios.get(url).then((ambilData) => {
 
       this.setState({
         dataBackend: ambilData.data,
-        length: ambilData.data
+        id: ambilData.data
       })
     })
   }
@@ -45,6 +45,7 @@ class Cart extends Component {
   }
 
   // AXIOS -----------------------------------------------------------------------------------
+
   updatecartPlus(id, y) {
     // how?
     var jum = y + 1
@@ -59,7 +60,7 @@ class Cart extends Component {
   }
 
   updatecartMinus(id, y) {
-    if (y > 1){
+   
     var jum = y - 1
     var url = `http://localhost:3222/addCartMinus`
     Axios.post(url, {
@@ -69,7 +70,7 @@ class Cart extends Component {
       .then((respon) => {
         { this.Carts() }
       })
-    }
+    
   }
 
   updatecartDelete(id) {
@@ -83,10 +84,12 @@ class Cart extends Component {
   }
 
   checkOut = () => {
+    
     if(this.state.nama == '' || this.state.alamat == '' || this.state.phone == ''){
         alert('Please Complete Shipping Detail')
     }
     else{
+
     var user = this.props.idlogin
     var url = `http://localhost:3222/Checkout`
     Axios.post(url, {
@@ -95,9 +98,9 @@ class Cart extends Component {
       phone: this.state.phone,
       alamat: this.state.adder,
       namapene: this.state.nama,
-      jumlah: this.refs.jml.value,
-      idprod: this.refs.idprod.value,
-      namaprod: this.refs.namaprods.value
+      // jumlah: this.refs.jumlah.value,
+      // idprod: this.refs.idprod.value,
+      // namaprod: this.refs.namaprods.value
     }).then((respon) => {
       var inv = respon.data.kode_invoice;
       this.props.idInvoice(inv);
@@ -108,8 +111,8 @@ class Cart extends Component {
 
   render() {
 
-    const { length } = this.state
-    if (length == 0) {
+    const { id } = this.state
+    if (id == 0) {
       return (
         <div>
           <Header />
@@ -138,22 +141,21 @@ class Cart extends Component {
       var no = i + 1
       var id = item.idcart
       var namaprod = item.namaprod
-      var jumlah = item.qtycart
-      var price = jumlah * item.harga
+      var jml = item.qtycart
+      var price = jml * item.harga
 
       return (
         <tr key={i}>
           <td> {no} </td>
           <td> {namaprod} </td>
           <td>
-            <Button justIcon color="transparent" onClick={() => { this.updatecartMinus(id, jumlah) }} >
+            <Button justIcon color="transparent" onClick={() => { this.updatecartMinus(id, jml) }} >
               <FontAwesomeIcon icon={faMinus} />
             </Button>
-            <input type="hidden" value={id} ref="idprod" />
-            <input type="hidden" value={namaprod} ref="namaprods" />
-            <input type="hidden" value={jumlah} ref="jml" />
-            {jumlah}
-            <Button justIcon color="transparent" onClick={() => { this.updatecartPlus(id, jumlah) }} >
+            
+            
+            {jml}
+            <Button justIcon color="transparent" onClick={() => { this.updatecartPlus(id, jml) }} >
               <FontAwesomeIcon icon={faPlus} />
             </Button>
           </td>

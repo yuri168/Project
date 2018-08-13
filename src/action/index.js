@@ -5,6 +5,13 @@ export const productID = (x) =>{
     }
 }
 
+export const kategoriID = (x) =>{
+    return{
+        type: 'idkategori',
+        payload: x
+    }
+}
+
 export const loginID = (x) =>{
     return{
         type: 'idLogin',

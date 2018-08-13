@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import Axios from 'axios';
 import './body.css';
 import { connect } from 'react-redux';
-import { productID } from '../action';
+import { kategoriID } from '../action';
 
 class Body extends Component {
     state = {
@@ -17,7 +17,7 @@ class Body extends Component {
     }
 
   componentWillMount(){
-    { this.body() }
+    { this.kategori() }
   }
   body() {
     var url = `http://localhost:3222/body`;
@@ -29,27 +29,37 @@ class Body extends Component {
     })
   }
 
+  kategori(){
+    var url = `http://localhost:3222/kategori`
+    Axios.get(url).then((kategori)=>{
+      // console.log(kategori.data)
+      this.setState({
+        dataBackend: kategori.data
+      })
+    })
+  }
+
   gettempid = (x) => {
-    this.props.productID(x);
+    this.props.kategoriID(x);
   }
 
   render() {
-      const foldergambar = "http://localhost:3000/image/";
+      // const foldergambar = "http://localhost:3000/image/";
       const data = this.state.dataBackend.map((item, i) => {
-      var idp = item.idprod
-      var namaProduk = item.namaprod
-      var gambar = item.img
+      var idkate = item.idkategori
+      var namaKatergori = item.namakategori
 
       return (
         <Grid item xs={12} sm={6} key={i}>
-        <Link to= {`/Product/${idp}`} onClick={()=>this.gettempid(idp)}>
+        <Link to= {`/ProductbyKategori/${idkate}`} onClick={()=>this.gettempid(idkate)}>
           <Paper>
             <Grid container spacing={8}>
-              <Grid item sm={6}>
-                <img className="pic" src={`${foldergambar+gambar}`} />
-              </Grid>
-              <Grid item sm={6}>
-                <h4>{namaProduk}</h4>
+              <Grid item sm={12}>
+              <center>
+                <div  className='kategori'>
+                {namaKatergori}
+                </div>
+              </center>
               </Grid>
             </Grid>
           </Paper>
@@ -82,4 +92,4 @@ class Body extends Component {
   }
 }
 
-export default connect(null, {productID}) (Body);
+export default connect(null, {kategoriID}) (Body);
