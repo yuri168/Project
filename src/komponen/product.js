@@ -10,11 +10,12 @@ import { connect } from 'react-redux';
 import { productID } from '../action';
 
 class Product extends Component {
-    state = {
-      dataBackend:[]
-    }
+  state = {
+    dataBackend: []
+    // [{},{},{}]
+  }
 
-  componentWillMount(){
+  componentWillMount() {
     //   console.log(this.props.idKtg)
     { this.body() }
   }
@@ -23,8 +24,8 @@ class Product extends Component {
     Axios.get(url).then((ambilData) => {
       this.setState({
         dataBackend: ambilData.data,
-       
       })
+      console.log(this.state.dataBackend);
     })
   }
 
@@ -33,27 +34,31 @@ class Product extends Component {
   }
 
   render() {
-      const foldergambar = "http://localhost:3000/image/";
-      const data = this.state.dataBackend.map((item, i) => {
+    const foldergambar = "http://localhost:3000/image/";
+
+    const data = this.state.dataBackend.map((item, i) => {
       var idp = item.idprod
       var namaProduk = item.namaprod
       var gambar = item.img
+      var harga = item.harga
 
       return (
         <Grid item xs={12} sm={6} key={i}>
-        <Link to= {`/ProductDetail/${idp}`} onClick={()=>this.gettempid(idp)}>
-          <Paper>
-            <Grid container spacing={8}>
-              <Grid item sm={6}>
-                <img className="pic" src={`${foldergambar+gambar}`} />
+          <Link to={`/ProductDetail/${idp}`} onClick={() => this.gettempid(idp)}>
+            <Paper>
+              <Grid container spacing={8}>
+                <Grid item sm={6}>
+                  <img className="pic" src={`${foldergambar + gambar}`} />
+                </Grid>
+                <Grid item sm={6}>
+                  <h4>{namaProduk}</h4>
+                  <br />
+                  <h4>Harga : {harga}</h4>
+                </Grid>
               </Grid>
-              <Grid item sm={6}>
-                <h4>{namaProduk}</h4>
-              </Grid>
-            </Grid>
-          </Paper>
-        </Link>
-      </Grid>
+            </Paper>
+          </Link>
+        </Grid>
       )
     })
 
@@ -64,7 +69,7 @@ class Product extends Component {
           <Header />
         </div>
         <div>
-            <img className="pickategori" src={require("../komponen/img/guarantee-may2017.jpg")}/>
+          <img className="pickategori" src={require("../komponen/img/guarantee-may2017.jpg")} />
         </div>
         <div className='body'>
           <Grid container spacing={16}>
@@ -78,10 +83,10 @@ class Product extends Component {
 }
 const mapStateToProps = (state) => {
 
-    const idprod = state.idproduct
-    const idKtg= state.idkategori
-    return { idprod, idKtg };
+  const idprod = state.idproduct
+  const idKtg = state.idkategori
+  return { idprod, idKtg };
 
 };
 
-export default connect(mapStateToProps, {productID}) (Product);
+export default connect(mapStateToProps, { productID })(Product);

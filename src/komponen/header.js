@@ -47,7 +47,7 @@ class SectionNavbars extends Component {
       return (
         <div>
           <Header
-            brand={<Link to='/'>Peak Design</Link>}
+            brand={<Link to='/'>Toko 88</Link>}
             rightLinks={
               <div>
                 <ul className="ull">
@@ -107,7 +107,7 @@ class SectionNavbars extends Component {
         <div>
           <div>
             <Header
-              brand={<Link to='/'>Peak Design</Link>}
+              brand={<Link to='/'>Toko 88</Link>}
               rightLinks={
                 <div>
                   <ul className="ull">
