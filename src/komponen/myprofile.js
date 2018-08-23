@@ -73,7 +73,6 @@ class myprofile extends Component {
                         </Paper>
                     </Link>
                 </Grid>
-
             )
         })
 
@@ -82,19 +81,18 @@ class myprofile extends Component {
             var email = item.email
             return (
                 <div>
-                    <Paper>
+                    <Paper key={i}>
                         <div className="detailprofile">
                             <br />
-                            <h4> Name  : {nama} </h4>
+                                <h4> Name  : {nama} </h4>
                             <br />
-                            <h5> Email : {email} </h5>
+                                <h5> Email : {email} </h5>
                             <br />
                         </div>
                     </Paper>
                 </div>
             )
         })
-
 
         return (
             <div>
@@ -103,15 +101,14 @@ class myprofile extends Component {
                     <div className="profile">
                         {Profile}
                     </div>
-                    
                     <div>
                         <div className="trans">
-                           <h4> Transaksi </h4>
-                        <Divider/>
+                            <h4> Transaksi </h4>
+                            <Divider />
                         </div>
-                    <Grid container spacing={24}>
-                        {data}
-                    </Grid>
+                        <Grid container spacing={24}>
+                            {data}
+                        </Grid>
                     </div>
                 </div>
                 <Footer />

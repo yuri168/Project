@@ -9,19 +9,19 @@ import './carosel.css'
 
 class SectionCarousel extends Component {
   render() {
-    const { classes } = this.props;
     const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: true,
       fade: true,
+      arrows: false,
     };
     return (
-      <div className={classes.section}>
-        <div className={classes.container}>
+      <div className=''>
+        <div className=''>
                 <Carousel {...settings} >
                   <div >
                     <img

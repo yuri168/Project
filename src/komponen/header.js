@@ -17,7 +17,7 @@ class SectionNavbars extends Component {
     search: ''
   };
 
-  componentDidMount(){
+  componentDidMount() {
     this.asd()
   }
   asd = () => {
@@ -46,29 +46,30 @@ class SectionNavbars extends Component {
     if (this.state.header === true) {
       return (
         <div>
-          <Header
-            brand={<Link to='/'>Toko 88</Link>}
+          <Header className="fonts"
+            brand={<Link className="button" to='/'>Toko 88</Link>}
             rightLinks={
               <div>
                 <ul className="ull">
                   <li className="lii">
                     <input
-                      
                       className="search"
                       placeholder="Search..."
                       ref="searchs"
                       type="text"
                     />
-                    </li>
-                    <li className="lii">
-                    <Link to={`/search/${this.state.search}`}>
-                    <Button className="button" justIcon color="transparent" onClick={() => this.submitsearchbtn()}>
-                      <FontAwesomeIcon icon={faSearch} />
-                    </Button>
-                    </Link>
+                  </li>
+                  <li className="lii">
+                  <Link style={{color:'grey'}} to={`/search/${this.state.search}`}>
+                        <Button  justIcon color="transparent" onClick={() => this.submitsearchbtn()}>
+                          <FontAwesomeIcon icon={faSearch} />
+                        </Button>
+                      </Link>
                   </li>
                   <li className="lii">
                     <Button
+                    style={{color:'grey', textDecoration:'none',fontFamily:'Montserrat'}}
+                      classesName="button"
                       color="transparent"
                       aria-owns={this.state.anchorEl ? 'simple-menu' : null}
                       aria-haspopup="true"
@@ -76,25 +77,24 @@ class SectionNavbars extends Component {
                       <FontAwesomeIcon icon={faUserAlt} />
                       Profile
                    </Button>
-                    <Menu
+                    <Menu 
+                      classesName="button"
                       id="simple-menu"
                       anchorEl={this.state.anchorEl}
                       open={Boolean(this.state.anchorEl)}
                       onClose={this.handleClose}
                     >
-                      <MenuItem ><Link to={`/MyProfile/${this.props.idHeader}`}><h5>My account</h5></Link></MenuItem>
-                      <MenuItem ><h5>Logout</h5></MenuItem>
+                      <MenuItem ><Link style={{color:'grey', textDecoration:'none',fontFamily:'Montserrat'}}  to={`/MyProfile/${this.props.idHeader}`}><h5>My account</h5></Link></MenuItem>
+                      <MenuItem ><h5 style={{color:'grey', textDecoration:'none',fontFamily:'Montserrat'}}>Logout</h5></MenuItem>
                     </Menu>
                   </li>
                   <li className="lii">
-                    <Button
-                      color="transparent"
-                    >
-                      <Link to={`/Cart/${this.props.idHeader}`} >
+                  <Link style={{color:'grey', textDecoration:'none'}} to={`/Cart/${this.props.idHeader}`} >
+                    <Button color="transparent" >
                         <FontAwesomeIcon icon={faShoppingCart} />
                         Cart
-                   </Link>
                     </Button>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -104,32 +104,31 @@ class SectionNavbars extends Component {
     }
     else {
       return (
-        <div>
           <div>
             <Header
-              brand={<Link to='/'>Toko 88</Link>}
+              className="fonts"
+              brand={<Link className="button" to='/'>Toko 88</Link>}
               rightLinks={
-                <div>
+                <div className="button">
                   <ul className="ull">
                     <li className="lii">
                       <input
-                        
                         className="search"
                         placeholder="Search..."
                         ref="searchs"
                         type="text"
                       />
-                      </li>
-                      <li className="lii">
-                      <Link to={`/search/${this.state.search}`}>
-                      <Button className="button buttons" justIcon color="transparent" onClick={() => this.submitsearchbtn()}>
-                        <FontAwesomeIcon icon={faSearch} />
-                      </Button>
+                    </li>
+                    <li className="lii">
+                      <Link style={{color:'grey', textDecoration:'none'}} to={`/search/${this.state.search}`}>
+                        <Button  justIcon color="transparent" onClick={() => this.submitsearchbtn()}>
+                          <FontAwesomeIcon icon={faSearch} />
+                        </Button>
                       </Link>
                     </li>
                     <li className="lii">
-                      <Link to="/Login">
-                        <Button color="transparent" >
+                      <Link className="button" style={{color:'grey', textDecoration:'none',fontFamily:'Montserrat'}} to="/Login" >
+                        <Button color="transparent">
                           <FontAwesomeIcon icon={faUserAlt} /> Login
                         </Button>
                       </Link>
@@ -139,7 +138,6 @@ class SectionNavbars extends Component {
               }
             />
           </div>
-        </div>
       )
     }
   }
@@ -147,7 +145,7 @@ class SectionNavbars extends Component {
   render() {
 
     return (
-      <div >
+      <div>
         {this.header()}
 
       </div>
@@ -161,4 +159,4 @@ const mapStateToProps = (state) => {
 
   return { user, idHeader, search }
 }
-export default connect(mapStateToProps,{searching})(SectionNavbars);
+export default connect(mapStateToProps, { searching })(SectionNavbars);

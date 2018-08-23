@@ -60,7 +60,7 @@ class Cart extends Component {
   }
 
   updatecartMinus(id, y) {
-   
+   if(y >1){
     var jum = y - 1
     var url = `http://localhost:3222/addCartMinus`
     Axios.post(url, {
@@ -70,6 +70,7 @@ class Cart extends Component {
       .then((respon) => {
         { this.Carts() }
       })
+    }
     
   }
 

@@ -39,7 +39,6 @@ class productDetail extends Component {
             harga: this.refs.prices.value,
             jumlah: this.refs.qty.value,
             idprod:this.refs.idprods.value
-
         })
           .then((respon) => {
               if(respon.data === 'sukses'){
@@ -84,11 +83,13 @@ class productDetail extends Component {
             var Stock = item.stock
             var gambar  = item.img
 
+
+
             return (
                 <Grid container spacing={8} key={i}>
                     <Grid item xs={12} sm={6}>
                         <div >
-                            <img className="productpic" src={`${foldergambar+gambar}`} />
+                            <img className="productpic" src={`${foldergambar+gambar}`} alt={gambar}/>
                     </div>
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -96,6 +97,8 @@ class productDetail extends Component {
                             <h2>
                                 {namaProduk}
                             </h2>
+                            <br />
+                                
                             <br />
                             <Divider />
                             <br />
@@ -143,16 +146,18 @@ class productDetail extends Component {
                                     
                                         {/* Quantity dari User */}
                                     <input
-                                        className="text"
+                                        className="inputproddetail"
                                         placeholder="Quantity"
                                         ref="qty"
                                         type="number"
                                     />
                                     <br /><br />
+                                    
                                     <div>
+                                    ${price} &emsp;&emsp;
                                         <Button color="danger" onClick={()=>{this.AddToCard(Stock)}} >
                                             Add to Cart
-                                    </Button>
+                                        </Button>
                                     </div>
                                 </div>
                             </div>

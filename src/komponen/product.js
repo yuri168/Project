@@ -5,7 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Link } from 'react-router-dom';
 import Axios from 'axios';
-import './body.css';
+import './product.css'
 import { connect } from 'react-redux';
 import { productID } from '../action';
 
@@ -41,19 +41,21 @@ class Product extends Component {
       var namaProduk = item.namaprod
       var gambar = item.img
       var harga = item.harga
+      var desc = item.descpendek
 
       return (
         <Grid item xs={12} sm={6} key={i}>
-          <Link to={`/ProductDetail/${idp}`} onClick={() => this.gettempid(idp)}>
+          <Link className='bodyProduct' to={`/ProductDetail/${idp}`} onClick={() => this.gettempid(idp)}>
             <Paper>
               <Grid container spacing={8}>
                 <Grid item sm={6}>
-                  <img className="pic" src={`${foldergambar + gambar}`} />
+                  <img className="pic" src={`${foldergambar + gambar}`} alt={gambar} />
                 </Grid>
                 <Grid item sm={6}>
-                  <h4>{namaProduk}</h4>
+                  <h3>{namaProduk}</h3>
+                  <p>{desc}</p>
                   <br />
-                  <h4>Harga : {harga}</h4>
+                  <h4>$ {harga}</h4>
                 </Grid>
               </Grid>
             </Paper>
@@ -68,10 +70,10 @@ class Product extends Component {
         <div className='header'>
           <Header />
         </div>
-        <div>
-          <img className="pickategori" src={require("../komponen/img/guarantee-may2017.jpg")} />
+        <div className='banner'>
+          <img className="picProduct" src={require("../komponen/img/guarantee-may2017.jpg")} alt='' />
         </div>
-        <div className='body'>
+        <div className="productProduct">
           <Grid container spacing={16}>
             {data}
           </Grid>

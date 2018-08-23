@@ -26,9 +26,23 @@
     box-sizing: border-box;
     font-size: 14px;
     color: grey;
+    font-family: 'Montserrat', sans-serif;
 }
-.buttons{
- margin: 0 auto
+.button{
+ margin: 0 auto;
+ text-decoration: none;
+ font-family: 'Montserrat', sans-serif;
+ color: grey;
+}
+
+.button:link{
+    text-decoration: none;
+    color: grey;
+}
+
+.button:visited{
+    text-decoration: none;
+    color: grey;
 }
 
 .ull{
@@ -38,4 +52,16 @@
 }
 .lii{
     display: inline;
+}
+
+.fonts{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.fonts:link{
+    text-decoration: none;
+}
+
+.fonts:visited{
+    text-decoration: none;
 }

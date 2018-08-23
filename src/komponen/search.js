@@ -74,7 +74,8 @@ class Search extends Component {
       return (
         <div>
           <Header
-            brand={<Link to='/'>Toko 88</Link>}
+            className="fonts"
+            brand={<Link className="button" to='/'>Toko 88</Link>}
             rightLinks={
               <div>
                 <ul className="ull">
@@ -87,7 +88,7 @@ class Search extends Component {
                       type="text"
                     />
                     </li>
-                    <li className="lii">
+                    <li className="lii button">
                     
                     <Button className="button" justIcon color="transparent" onClick={() => this.submitsearchbtn()}>
                       <FontAwesomeIcon icon={faSearch} />
@@ -114,14 +115,12 @@ class Search extends Component {
                     </Menu>
                   </li>
                   <li className="lii">
-                    <Button
-                      color="transparent"
-                    >
-                      <Link to={`/Cart/${this.props.idHeader}`} >
+                  <Link style={{color:'grey', textDecoration:'none'}} to={`/Cart/${this.props.idHeader}`} >
+                    <Button color="transparent" >
                         <FontAwesomeIcon icon={faShoppingCart} />
                         Cart
-                   </Link>
                     </Button>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -133,8 +132,8 @@ class Search extends Component {
       return (
         <div>
           <div>
-            <Header
-              brand={<Link to='/'>Toko 88</Link>}
+            <Header className="fonts"
+              brand={<Link className="button" to='/'>Toko 88</Link>}
               rightLinks={
                 <div>
                   <ul className="ull">
@@ -148,15 +147,13 @@ class Search extends Component {
                       />
                       </li>
                       <li className="lii">
-                     
-                      <Button className="button buttons" justIcon color="transparent" onClick={() => this.submitsearchbtn()}>
+                      <Button style={{color:'grey'}}  justIcon color="transparent" onClick={() => this.submitsearchbtn()}>
                         <FontAwesomeIcon icon={faSearch} />
-                      </Button>
-                      
+                      </Button> 
                     </li>
-                    <li className="lii">
-                      <Link to="/Login">
-                        <Button color="transparent" >
+                    <li className="lii" >
+                    <Link className="button" style={{color:'grey', textDecoration:'none',fontFamily:'Montserrat'}} to="/Login" >
+                        <Button color="transparent">
                           <FontAwesomeIcon icon={faUserAlt} /> Login
                         </Button>
                       </Link>
@@ -189,7 +186,7 @@ class Search extends Component {
           <Paper>
             <Grid container spacing={8}>
               <Grid item sm={6}>
-                <img className="pic" src={`${foldergambar+gambar}`} />
+                <img className="pic" src={`${foldergambar+gambar}`} alt={gambar}/>
               </Grid>
               <Grid item sm={6}>
                 <h4>{namaProduk}</h4>

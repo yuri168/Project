@@ -1,8 +1,7 @@
 .body{
-    margin-top:12px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-bottom: 20px;
+    margin: 0 10px 20px 10px;
+    padding:0 25px 0 25px; 
+    /* top, right, bottom, left */
 }
 .pic{
     width: 80%;
@@ -16,14 +15,30 @@
     z-index: 1;
 }
 .karosel{
-    background-image: url(../komponen/img/guarantee-may2017.jpg);
     margin-top: 62px;
     margin: 0, auto;
-
 }
 .kategori{
     padding: 20px;
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
 }
-.pickategori{
+
+.kategori:link{
+    text-decoration: none;
+}
+.kategori:visited{
+    text-decoration: none;
+}
+.kategori:hover{
+    color: red;
+}
+
+.picKategori{
     width: 100%;
+}
+
+.bodykategori{
+    padding-top: 70px;
 }
